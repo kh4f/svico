@@ -61,7 +61,7 @@ fn build_ico(png_layers: &[(u32, Vec<u8>)]) -> Vec<u8> {
         offset += buf.len() as u32;
     }
 
-    for &(_, ref buf) in png_layers {
+    for (_, buf) in png_layers {
         ico.extend_from_slice(buf);
     }
 
