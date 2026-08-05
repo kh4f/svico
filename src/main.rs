@@ -2,13 +2,14 @@ use std::{env, error::Error, fs, path::PathBuf};
 
 use resvg::{tiny_skia, usvg};
 
-const SIZES: [u32; 4] = [16, 24, 32, 256];
+const DEFAULT_SIZES: &[u32] = &[16, 24, 32, 256];
 
 type AnyResult<T = ()> = Result<T, Box<dyn Error>>;
 
 fn main() -> AnyResult {
     let mut svg_path = None;
     let mut ico_path = None;
+    let mut sizes = DEFAULT_SIZES.to_vec();
 
     let mut args = env::args().skip(1);
     while let Some(arg) = args.next() {
@@ -19,13 +20,32 @@ fn main() -> AnyResult {
                 };
                 ico_path = Some(PathBuf::from(value));
             }
+            "-s" | "--sizes" => {
+                let Some(value) = args.next() else {
+                    return Err("missing value for -s/--sizes".into());
+                };
+                sizes = value
+                    .split(',')
+                    .map(|s| {
+                        s.trim()
+                            .parse::<u32>()
+                            .map_err(|_| format!("invalid size: {s}"))
+                    })
+                    .collect::<Result<Vec<_>, _>>()?;
+            }
             _ if arg.starts_with('-') => return Err(format!("unknown option: {arg}").into()),
             _ => svg_path = Some(arg),
         }
     }
 
+    if sizes.is_empty() || sizes.iter().any(|&s| s == 0 || s > 256) {
+        return Err("sizes must be > 0 and < 257".into());
+    }
+
     let Some(svg_path) = svg_path else {
-        return Err("usage: svico <input.svg> [-o|--output <file.ico>]".into());
+        return Err(
+            "usage: svico <input.svg> [-o|--output <output.ico>] [-s|--sizes 16,24,32,256]".into(),
+        );
     };
     let ico_path = ico_path.unwrap_or_else(|| PathBuf::from(&svg_path).with_extension("ico"));
 
@@ -33,7 +53,7 @@ fn main() -> AnyResult {
     let svg_tree = usvg::Tree::from_data(&svg_data, &usvg::Options::default())?;
     let svg_size = svg_tree.size();
 
-    let png_layers = SIZES
+    let png_layers = sizes
         .iter()
         .map(|&size| {
             let png = render_to_png(&svg_tree, &svg_size, size)?;
