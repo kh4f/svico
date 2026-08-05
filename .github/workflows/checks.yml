@@ -16,6 +16,7 @@ jobs:
             ~/.cargo/git/db/
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - uses: extractions/setup-just@v4
 
-      - run: cargo run --bin tasks lint
-      - run: cargo run --bin tasks build
+      - run: just lint
+      - run: just build
