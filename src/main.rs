@@ -26,6 +26,7 @@ fn main() -> AnyResult {
     Ok(())
 }
 
+/// Renders the SVG to a `size`×`size` PNG layer.
 fn render_to_png(svg_tree: &usvg::Tree, svg_size: &usvg::Size, size: u32) -> AnyResult<Vec<u8>> {
     let mut pixmap = tiny_skia::Pixmap::new(size, size).ok_or("failed to allocate pixmap")?;
 
@@ -42,25 +43,30 @@ fn render_to_png(svg_tree: &usvg::Tree, svg_size: &usvg::Size, size: u32) -> Any
     encode_png(size, size, &unpremultiply(pixmap.data()))
 }
 
+/// Builds an ICO container from PNG layers.
+///
+/// See [the ICO file format spec](https://en.wikipedia.org/wiki/ICO_(file_format)#File_structure).
 fn build_ico(png_layers: &[(u32, Vec<u8>)]) -> Vec<u8> {
     let layer_count = png_layers.len() as u16;
     let mut ico = Vec::new();
 
-    ico.extend_from_slice(&0u16.to_le_bytes());
-    ico.extend_from_slice(&1u16.to_le_bytes());
-    ico.extend_from_slice(&layer_count.to_le_bytes());
+    ico.extend_from_slice(&0u16.to_le_bytes()); // reserved
+    ico.extend_from_slice(&1u16.to_le_bytes()); // type: icon
+    ico.extend_from_slice(&layer_count.to_le_bytes()); // image count
 
+    // ICONDIRENTRY array
     let mut offset = 6u32 + 16 * layer_count as u32;
     for &(dim, ref buf) in png_layers {
-        let wh = if dim == 256 { 0 } else { dim as u8 };
-        ico.extend_from_slice(&[wh, wh, 0, 0]);
-        ico.extend_from_slice(&1u16.to_le_bytes());
-        ico.extend_from_slice(&32u16.to_le_bytes());
-        ico.extend_from_slice(&(buf.len() as u32).to_le_bytes());
-        ico.extend_from_slice(&offset.to_le_bytes());
+        let wh = if dim == 256 { 0 } else { dim as u8 }; // 0 == 256
+        ico.extend_from_slice(&[wh, wh, 0, 0]); // w, h, colors, reserved
+        ico.extend_from_slice(&1u16.to_le_bytes()); // planes
+        ico.extend_from_slice(&32u16.to_le_bytes()); // bpp
+        ico.extend_from_slice(&(buf.len() as u32).to_le_bytes()); // size
+        ico.extend_from_slice(&offset.to_le_bytes()); // offset
         offset += buf.len() as u32;
     }
 
+    // PNG blobs
     for (_, buf) in png_layers {
         ico.extend_from_slice(buf);
     }
@@ -68,6 +74,7 @@ fn build_ico(png_layers: &[(u32, Vec<u8>)]) -> Vec<u8> {
     ico
 }
 
+/// Encodes RGBA to PNG, then losslessly re-compresses with oxipng.
 fn encode_png(width: u32, height: u32, rgba: &[u8]) -> AnyResult<Vec<u8>> {
     let mut data = Vec::new();
     {
@@ -86,6 +93,7 @@ fn encode_png(width: u32, height: u32, rgba: &[u8]) -> AnyResult<Vec<u8>> {
     )?)
 }
 
+/// Converts premultiplied alpha back to straight RGBA.
 fn unpremultiply(data: &[u8]) -> Vec<u8> {
     let mut out = data.to_vec();
 
