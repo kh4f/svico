@@ -80,7 +80,10 @@ fn encode_png(width: u32, height: u32, rgba: &[u8]) -> AnyResult<Vec<u8>> {
         writer.write_image_data(rgba)?;
     }
 
-    Ok(data)
+    Ok(oxipng::optimize_from_memory(
+        &data,
+        &oxipng::Options::max_compression(),
+    )?)
 }
 
 fn unpremultiply(data: &[u8]) -> Vec<u8> {
