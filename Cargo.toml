@@ -2,6 +2,13 @@
 name = "svico"
 version = "0.0.0"
 edition = "2024"
+description = "Convert SVG to multi-resolution ICO"
+authors = ["kh4f"]
+license = "MIT"
+repository = "https://github.com/kh4f/svico"
+readme = "README.md"
+keywords = ["svg", "ico", "converter"]
+categories = ["command-line-utilities", "graphics"]
 
 [dependencies]
 oxipng = "10.1.1"
