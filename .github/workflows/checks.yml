@@ -17,6 +17,5 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - run: cargo fmt --check
-      - run: cargo clippy -- -D warnings
-      - run: cargo build --release
+      - run: cargo run --bin tasks lint
+      - run: cargo run --bin tasks build
