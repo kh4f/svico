@@ -1,4 +1,4 @@
-use std::{error::Error, fs};
+use std::{env, error::Error, fs, path::PathBuf};
 
 use resvg::{tiny_skia, usvg};
 
@@ -7,7 +7,29 @@ const SIZES: [u32; 4] = [16, 24, 32, 256];
 type AnyResult<T = ()> = Result<T, Box<dyn Error>>;
 
 fn main() -> AnyResult {
-    let svg_data = fs::read("icon.svg")?;
+    let mut svg_path = None;
+    let mut ico_path = None;
+
+    let mut args = env::args().skip(1);
+    while let Some(arg) = args.next() {
+        match arg.as_str() {
+            "-o" | "--output" => {
+                let Some(value) = args.next() else {
+                    return Err("missing value for -o/--output".into());
+                };
+                ico_path = Some(PathBuf::from(value));
+            }
+            _ if arg.starts_with('-') => return Err(format!("unknown option: {arg}").into()),
+            _ => svg_path = Some(arg),
+        }
+    }
+
+    let Some(svg_path) = svg_path else {
+        return Err("usage: svico <input.svg> [-o|--output <file.ico>]".into());
+    };
+    let ico_path = ico_path.unwrap_or_else(|| PathBuf::from(&svg_path).with_extension("ico"));
+
+    let svg_data = fs::read(&svg_path)?;
     let svg_tree = usvg::Tree::from_data(&svg_data, &usvg::Options::default())?;
     let svg_size = svg_tree.size();
 
@@ -21,8 +43,8 @@ fn main() -> AnyResult {
         .collect::<AnyResult<Vec<_>>>()?;
 
     let ico = build_ico(&png_layers);
-    fs::write("icon.ico", &ico)?;
-    println!("Icon created: icon.ico ({} bytes)", ico.len());
+    fs::write(&ico_path, &ico)?;
+    println!("Icon created: {} ({} bytes)", ico_path.display(), ico.len());
     Ok(())
 }
 
