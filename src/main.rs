@@ -1,6 +1,22 @@
-use std::{env, error::Error, path::PathBuf};
+use std::{env, path::PathBuf};
 
 const DEFAULT_SIZES: &[u32] = &[16, 24, 32, 256];
+
+const USAGE: &str = "Usage: svico <input.svg> [options]";
+
+const HELP: &str = "\
+Usage: svico <input.svg> [options]
+
+Options:
+  -o, --output <path>  Output .ico path [<input>.ico]
+  -s, --sizes <list>   Comma-separated sizes in 1..=256 [16,24,32,256]
+  -h, --help           Print help
+
+Examples:
+  svico icon.svg
+  svico icon.svg -o app/favicon.ico
+  svico icon.svg -s 64,128,256
+";
 
 fn main() -> Result<(), Box<dyn Error>> {
     let mut svg_path = None;
@@ -10,6 +26,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut args = env::args().skip(1);
     while let Some(arg) = args.next() {
         match arg.as_str() {
+            "-h" | "--help" => {
+                println!("{HELP}");
+                return Ok(());
+            }
             "-o" | "--output" => {
                 let Some(value) = args.next() else {
                     return Err("missing value for -o/--output".into());
