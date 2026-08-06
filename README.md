@@ -23,3 +23,19 @@ Examples:
   svico icon.svg -o app/favicon.ico
   svico icon.svg -s 64,128,256
 ```
+
+## 🧩 API
+
+Use `svico` as a library to convert SVG to ICO from your own Rust code:
+
+```toml
+[dependencies]
+svico = "0.1"
+```
+
+```rust
+fn main() -> anyhow::Result<()> {
+    svico::convert("icon.svg", "icon.ico", &[16, 24, 32, 256])?;
+    Ok(())
+}
+```
