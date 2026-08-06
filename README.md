@@ -1,6 +1,6 @@
 # 🖼️ svico
 
-Convert SVG to a tiny, lossless multi-resolution ICO.
+An SVG to ICO converter optimized for the **smallest lossless output**
 
 ## 🕹️ CLI
 
