@@ -2,6 +2,9 @@ name: release
 
 on: { push: { tags: v*.*.* } }
 
+env:
+  TAG: ${{ github.ref_name }}
+
 jobs:
   build:
     strategy:
@@ -32,11 +35,10 @@ jobs:
 
       - shell: bash
         run: |
-          APP=svico
-          VER=${GITHUB_REF_NAME#v}
+          VER=${TAG#v}
           REPO=${{ github.event.repository.name }}
-          BIN=target/release/$APP${{ matrix.bin_ext }}
-          OUT=dist/$APP
+          BIN=target/release/$REPO${{ matrix.bin_ext }}
+          OUT=dist/$REPO
           ZIP=dist/$REPO-$VER-${{ matrix.platform }}.zip
 
           mkdir -p $OUT
