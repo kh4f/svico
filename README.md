@@ -24,8 +24,6 @@ Examples:
 
 ## 🧩 API
 
-Use `svico` as a library to convert SVG to ICO from your own Rust code:
-
 ```toml
 [dependencies]
 svico = "0.1"
