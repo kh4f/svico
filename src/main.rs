@@ -1,6 +1,6 @@
 use std::{env, error::Error, path::PathBuf};
 
-use svico::{DEFAULT_SIZES, convert};
+const DEFAULT_SIZES: &[u32] = &[16, 24, 32, 256];
 
 fn main() -> Result<(), Box<dyn Error>> {
     let mut svg_path = None;
@@ -45,5 +45,5 @@ fn main() -> Result<(), Box<dyn Error>> {
     };
     let ico_path = ico_path.unwrap_or_else(|| PathBuf::from(&svg_path).with_extension("ico"));
 
-    convert(&svg_path, &ico_path, &sizes)
+    svico::convert(&svg_path, &ico_path, &sizes)
 }

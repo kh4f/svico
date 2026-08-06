@@ -2,9 +2,7 @@ use std::{error::Error, fs, path::Path};
 
 use resvg::{tiny_skia, usvg};
 
-pub const DEFAULT_SIZES: &[u32] = &[16, 24, 32, 256];
-
-pub type AnyResult<T = ()> = Result<T, Box<dyn Error>>;
+type AnyResult<T = ()> = Result<T, Box<dyn Error>>;
 
 /// Renders the SVG file to an ICO file containing PNG layers of the given sizes.
 pub fn convert(
@@ -36,11 +34,7 @@ pub fn convert(
 }
 
 /// Renders the SVG to a `size`×`size` PNG layer.
-pub fn render_to_png(
-    svg_tree: &usvg::Tree,
-    svg_size: &usvg::Size,
-    size: u32,
-) -> AnyResult<Vec<u8>> {
+fn render_to_png(svg_tree: &usvg::Tree, svg_size: &usvg::Size, size: u32) -> AnyResult<Vec<u8>> {
     let mut pixmap = tiny_skia::Pixmap::new(size, size).ok_or("failed to allocate pixmap")?;
 
     let scale = (size as f32 / svg_size.width()).min(size as f32 / svg_size.height());
@@ -59,7 +53,7 @@ pub fn render_to_png(
 /// Builds an ICO container from PNG layers.
 ///
 /// See [the ICO file format spec](https://en.wikipedia.org/wiki/ICO_(file_format)#File_structure).
-pub fn build_ico(png_layers: &[(u32, Vec<u8>)]) -> Vec<u8> {
+fn build_ico(png_layers: &[(u32, Vec<u8>)]) -> Vec<u8> {
     let layer_count = png_layers.len() as u16;
     let mut ico = Vec::new();
 
