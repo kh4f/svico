@@ -2,7 +2,7 @@
 name = "svico"
 version = "0.1.0"
 edition = "2024"
-description = "Convert SVG to multi-resolution ICO"
+description = "🖼️ SVG to Tiny Lossless ICO Converter"
 authors = ["kh4f"]
 license = "MIT"
 repository = "https://github.com/kh4f/svico"
