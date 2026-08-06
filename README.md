@@ -2,13 +2,11 @@
 
 Convert SVG to a tiny, lossless multi-resolution ICO.
 
-## 📥 Install
+## 🕹️ CLI
 
 ```bash
 cargo install svico
 ```
-
-## 🕹️ Usage
 
 ```bash
 Usage: svico <input.svg> [options]
