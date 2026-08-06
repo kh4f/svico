@@ -12,6 +12,7 @@ categories = ["command-line-utilities", "graphics"]
 include = ["src", "LICENSE"]
 
 [dependencies]
+anyhow = "1.0.104"
 resvg = "0.48.1"
 png = "0.18.1"
 oxipng = "10.1.1"

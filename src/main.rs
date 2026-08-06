@@ -18,7 +18,7 @@ Examples:
   svico icon.svg -s 64,128,256
 ";
 
-fn main() -> Result<(), Box<dyn Error>> {
+fn main() -> anyhow::Result<()> {
     let mut svg_path = None;
     let mut ico_path = None;
     let mut sizes = DEFAULT_SIZES.to_vec();
@@ -32,38 +32,37 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
             "-o" | "--output" => {
                 let Some(value) = args.next() else {
-                    return Err("missing value for -o/--output".into());
+                    anyhow::bail!("missing value for -o/--output");
                 };
                 ico_path = Some(PathBuf::from(value));
             }
             "-s" | "--sizes" => {
                 let Some(value) = args.next() else {
-                    return Err("missing value for -s/--sizes".into());
+                    anyhow::bail!("missing value for -s/--sizes");
                 };
                 sizes = value
                     .split(',')
                     .map(|s| {
                         s.trim()
                             .parse::<u32>()
-                            .map_err(|_| format!("invalid size: {s}"))
+                            .map_err(|_| anyhow::anyhow!("invalid size: {s}"))
                     })
                     .collect::<Result<Vec<_>, _>>()?;
             }
-            _ if arg.starts_with('-') => return Err(format!("unknown option: {arg}").into()),
+            _ if arg.starts_with('-') => anyhow::bail!("unknown option: {arg}"),
             _ => svg_path = Some(arg),
         }
     }
 
     if sizes.is_empty() || sizes.iter().any(|&s| s == 0 || s > 256) {
-        return Err("sizes must be > 0 and < 257".into());
+        anyhow::bail!("sizes must be > 0 and < 257");
     }
 
     let Some(svg_path) = svg_path else {
-        return Err(
-            "usage: svico <input.svg> [-o|--output <output.ico>] [-s|--sizes 16,24,32,256]".into(),
-        );
+        anyhow::bail!("{USAGE}\nSee 'svico --help' for more information.");
     };
     let ico_path = ico_path.unwrap_or_else(|| PathBuf::from(&svg_path).with_extension("ico"));
 
-    svico::convert(&svg_path, &ico_path, &sizes)
+    svico::convert(&svg_path, &ico_path, &sizes)?;
+    Ok(())
 }

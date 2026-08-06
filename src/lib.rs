@@ -1,15 +1,13 @@
-use std::{error::Error, fs, path::Path};
+use std::{fs, path::Path};
 
 use resvg::{tiny_skia, usvg};
-
-type AnyResult<T = ()> = Result<T, Box<dyn Error>>;
 
 /// Renders the SVG file to an ICO file containing PNG layers of the given sizes.
 pub fn convert(
     svg_path: impl AsRef<Path>,
     ico_path: impl AsRef<Path>,
     sizes: &[u32],
-) -> AnyResult<()> {
+) -> anyhow::Result<()> {
     let svg_data = fs::read(svg_path)?;
     let svg_tree = usvg::Tree::from_data(&svg_data, &usvg::Options::default())?;
     let svg_size = svg_tree.size();
@@ -19,9 +17,9 @@ pub fn convert(
         .map(|&size| {
             let png = render_to_png(&svg_tree, &svg_size, size)?;
             println!("Layer {size}×{size}: {} bytes", png.len());
-            Ok::<_, Box<dyn Error>>((size, png))
+            Ok::<_, anyhow::Error>((size, png))
         })
-        .collect::<AnyResult<Vec<_>>>()?;
+        .collect::<anyhow::Result<Vec<_>>>()?;
 
     let ico = build_ico(&png_layers);
     fs::write(&ico_path, &ico)?;
@@ -34,8 +32,13 @@ pub fn convert(
 }
 
 /// Renders the SVG to a `size`×`size` PNG layer.
-fn render_to_png(svg_tree: &usvg::Tree, svg_size: &usvg::Size, size: u32) -> AnyResult<Vec<u8>> {
-    let mut pixmap = tiny_skia::Pixmap::new(size, size).ok_or("failed to allocate pixmap")?;
+fn render_to_png(
+    svg_tree: &usvg::Tree,
+    svg_size: &usvg::Size,
+    size: u32,
+) -> anyhow::Result<Vec<u8>> {
+    let mut pixmap = tiny_skia::Pixmap::new(size, size)
+        .ok_or_else(|| anyhow::anyhow!("failed to allocate pixmap"))?;
 
     let scale = (size as f32 / svg_size.width()).min(size as f32 / svg_size.height());
     let dx = (size as f32 - svg_size.width() * scale) / 2.0;
@@ -82,7 +85,7 @@ fn build_ico(png_layers: &[(u32, Vec<u8>)]) -> Vec<u8> {
 }
 
 /// Encodes RGBA to PNG, then losslessly re-compresses with oxipng.
-fn encode_png(width: u32, height: u32, rgba: &[u8]) -> AnyResult<Vec<u8>> {
+fn encode_png(width: u32, height: u32, rgba: &[u8]) -> anyhow::Result<Vec<u8>> {
     let mut data = Vec::new();
     {
         let mut encoder = png::Encoder::new(&mut data, width, height);
