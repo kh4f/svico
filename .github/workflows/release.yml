@@ -56,14 +56,12 @@ jobs:
     permissions: { contents: write }
     steps:
       - uses: actions/checkout@v7
-
       - uses: actions/download-artifact@v8
         with: { path: dist, merge-multiple: true }
 
       - run: gh release create --title $TAG --draft $TAG dist/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - run: cargo publish
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
