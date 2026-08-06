@@ -1,0 +1,59 @@
+name: release
+
+on: { push: { tags: v*.*.* } }
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - image: ubuntu-latest
+            platform: linux-x64
+            bin_ext: ""
+          - image: windows-latest
+            platform: windows-x64
+            bin_ext: .exe
+    runs-on: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - uses: extractions/setup-just@v4
+
+      - run: just lint
+      - run: just build
+
+      - shell: bash
+        run: |
+          APP=svico
+          VER=${GITHUB_REF_NAME#v}
+          REPO=${{ github.event.repository.name }}
+          BIN=target/release/$APP${{ matrix.bin_ext }}
+          OUT=dist/$APP
+          ZIP=dist/$REPO-$VER-${{ matrix.platform }}.zip
+
+          mkdir -p $OUT
+          cp $BIN $OUT
+          python3 -m zipfile -c $ZIP $OUT
+
+      - uses: actions/upload-artifact@v7
+        with:
+          path: dist/*.zip
+          name: ${{ matrix.platform }}
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    env:
+      TAG: ${{ github.ref_name }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with: { merge-multiple: true }
