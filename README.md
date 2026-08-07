@@ -1,6 +1,6 @@
 # 🖼️ Svico
 
-<a href='https://crates.io/crates/svico'><img src="https://img.shields.io/crates/v/svico.svg?style=flat-square&labelColor=b94f16&color=d6c8ba&label=%F0%9F%93%A6%20crates.io" alt="crates.io"></a>&nbsp;
+<a href='https://crates.io/crates/svico'><img src="https://img.shields.io/crates/v/svico.svg?style=flat-square&logo=rust&labelColor=b94f16&color=d6c8ba&label=crates.io" alt="crates.io"></a>&nbsp;
 <a href="https://crates.io/crates/svico"><img src="https://img.shields.io/crates/d/svico.svg?style=flat-square&labelColor=b94f16&color=d6c8ba&label=%F0%9F%93%A5%20downloads" alt="downloads"/></a>&nbsp;
 <a href="https://docs.rs/svico"><img src="https://img.shields.io/docsrs/svico?style=flat-square&labelColor=b94f16&color=d6c8ba&label=%F0%9F%93%8B%20docs" alt="docs"></a>
 
