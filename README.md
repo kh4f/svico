@@ -6,7 +6,7 @@
 
 An SVG to ICO converter optimized for the **smallest lossless output**
 
-Svico renders the SVG into PNG layers at each requested size, losslessly compresses them with `oxipng`, and assembles them into a single `.ico` file.
+Svico renders the SVG into PNG layers at each requested size, losslessly compresses them with [Oxipng](https://crates.io/crates/oxipng), and assembles them into a single `.ico` file.
 
 ## 🕹️ CLI
 
