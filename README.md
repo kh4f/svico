@@ -1,8 +1,8 @@
 # 🖼️ svico
 
-<a href='https://crates.io/crates/svico'><img src="https://img.shields.io/crates/v/svico.svg?style=flat-square&label=crates.io&labelColor=b94f16&color=d6c8ba" alt="crates.io"></a>&nbsp;
-<a href="https://crates.io/crates/svico"><img src="https://img.shields.io/crates/d/svico.svg?style=flat-square&label=downloads&labelColor=b94f16&color=d6c8ba" alt="downloads"/></a>&nbsp;
-<a href="https://docs.rs/svico"><img src="https://img.shields.io/docsrs/svico?style=flat-square&label=docs&labelColor=b94f16&color=d6c8ba" alt="docs"></a>
+<a href='https://crates.io/crates/svico'><img src="https://img.shields.io/crates/v/svico.svg?style=flat-square&labelColor=b94f16&color=d6c8ba&label=%F0%9F%93%A6%20crates.io" alt="crates.io"></a>&nbsp;
+<a href="https://crates.io/crates/svico"><img src="https://img.shields.io/crates/d/svico.svg?style=flat-square&labelColor=b94f16&color=d6c8ba&label=%F0%9F%93%A5%20downloads" alt="downloads"/></a>&nbsp;
+<a href="https://docs.rs/svico"><img src="https://img.shields.io/docsrs/svico?style=flat-square&labelColor=b94f16&color=d6c8ba&label=%F0%9F%93%8B%20docs" alt="docs"></a>
 
 An SVG to ICO converter optimized for the **smallest lossless output**
 
