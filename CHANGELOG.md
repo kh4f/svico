@@ -1,6 +1,15 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.3.2  `](https://github.com/kh4f/svico/compare/v0.3.1...v0.3.2)
+
+### &emsp; 📋 Docs
+- **Updated README badges**: status badges now use emoji labels and a Rust logo on the crates.io version badge. [🡥](https://github.com/kh4f/svico/commit/5bdcb65)
+- **Consistent branding**: the README now writes `Svico` and links `Oxipng` with its official crates.io name. [🡥](https://github.com/kh4f/svico/commit/04f5a80)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.3.1...v0.3.2) &ensp;•&ensp; Aug 7, 2026
+
+
 ## &ensp; [` 📦 v0.3.1  `](https://github.com/kh4f/svico/compare/v0.3.0...v0.3.1)
 
 ### &emsp; 📋 Docs
