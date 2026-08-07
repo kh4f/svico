@@ -8,6 +8,20 @@ pub fn convert(
     ico_path: impl AsRef<Path>,
     sizes: &[u32],
 ) -> anyhow::Result<()> {
+    let svg_path = svg_path.as_ref();
+    let ico_path = ico_path.as_ref();
+
+    let sizes_list = sizes
+        .iter()
+        .map(|s| s.to_string())
+        .collect::<Vec<_>>()
+        .join(", ");
+    println!(
+        "Generating {} from {} with sizes: {sizes_list}",
+        ico_path.display(),
+        svg_path.display()
+    );
+
     let svg_data = fs::read(svg_path)?;
     let svg_tree = usvg::Tree::from_data(&svg_data, &usvg::Options::default())?;
     let svg_size = svg_tree.size();
@@ -16,18 +30,14 @@ pub fn convert(
         .iter()
         .map(|&size| {
             let png = render_to_png(&svg_tree, &svg_size, size)?;
-            println!("Layer {size}×{size}: {} bytes", png.len());
+            println!("  - {size:>3}×{size:<3} {:>6}", fmt_bytes(png.len()));
             Ok::<_, anyhow::Error>((size, png))
         })
         .collect::<anyhow::Result<Vec<_>>>()?;
 
     let ico = build_ico(&png_layers);
-    fs::write(&ico_path, &ico)?;
-    println!(
-        "Icon created: {} ({} bytes)",
-        ico_path.as_ref().display(),
-        ico.len()
-    );
+    fs::write(ico_path, &ico)?;
+    println!("Done! {} is {}", ico_path.display(), fmt_bytes(ico.len()));
     Ok(())
 }
 
@@ -118,4 +128,13 @@ fn unpremultiply(data: &[u8]) -> Vec<u8> {
     }
 
     out
+}
+
+/// Formats a byte count as `B` or `KiB` (binary units, /1024).
+fn fmt_bytes(n: usize) -> String {
+    if n < 1024 {
+        format!("{n} B")
+    } else {
+        format!("{:.1} KiB", n as f32 / 1024.0)
+    }
 }
