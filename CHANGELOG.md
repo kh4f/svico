@@ -1,5 +1,23 @@
 # Changelog
 
+
+## &ensp; [` 📦 v0.2.0  `](https://github.com/kh4f/svico/compare/v0.1.0...v0.2.0)
+
+### &emsp; 📢 BREAKING CHANGES
+- **Reduced public API**: the library now exposes only the `convert` function; `DEFAULT_SIZES`, `AnyResult`, `render_to_png`, and `build_ico` are no longer exported. [🡥](https://github.com/kh4f/svico/commit/6d98920)
+
+### &emsp; 🎁 Features
+- **CLI help output**: added `-h`/`--help` support that prints usage, options, and examples. [🡥](https://github.com/kh4f/svico/commit/a599aa4)
+- **Helpful missing-input message**: running without an input SVG now points to `--help`. [🡥](https://github.com/kh4f/svico/commit/1e1962c)
+
+### &emsp; 📋 Docs
+- **Project README**: documented CLI usage, options, and examples. [🡥](https://github.com/kh4f/svico/commit/d8c69a4)
+- **Library API guide**: README now shows using `svico` as a dependency with a `convert` example. [🡥](https://github.com/kh4f/svico/commit/a9f85cb)
+- **Prebuilt binary link**: README points to GitHub Releases for ready-made binaries. [🡥](https://github.com/kh4f/svico/commit/368a65f)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.1.0...v0.2.0) &ensp;•&ensp; Aug 7, 2026
+
+
 ## &ensp; [` 📦 v0.1.0  `](https://github.com/kh4f/svico/commits/v0.1.0)
 
 ### &emsp; 🎁 Features

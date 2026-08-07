@@ -28,7 +28,7 @@ Examples:
 
 ```toml
 [dependencies]
-svico = "0.1"
+svico = "0.2"
 ```
 
 ```rust
