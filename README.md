@@ -2,6 +2,10 @@
 
 An SVG to ICO converter optimized for the **smallest lossless output**
 
+## 💡 How it works
+
+`svico` renders the SVG at each requested size with [`resvg`](https://crates.io/crates/resvg), encodes the raw pixels as PNG with [`png`](https://crates.io/crates/png), losslessly compresses each layer with [`oxipng`](https://crates.io/crates/oxipng), and hand-assembles them into an [ICO container](https://en.wikipedia.org/wiki/ICO_\(file_format\)#File_structure).
+
 ## 🕹️ CLI
 
 ```bash
