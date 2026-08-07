@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.3.1  `](https://github.com/kh4f/svico/compare/v0.3.0...v0.3.1)
+
+### &emsp; 📋 Docs
+- **Up-to-date dependency example**: the API section now points to `svico = "0.3"`, matching the latest release. [🡥](https://github.com/kh4f/svico/commit/5f86e5b)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.3.0...v0.3.1) &ensp;•&ensp; Aug 7, 2026
+
+
 ## &ensp; [` 📦 v0.3.0  `](https://github.com/kh4f/svico/compare/v0.2.0...v0.3.0)
 
 ### &emsp; 🎁 Features
