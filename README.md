@@ -1,4 +1,4 @@
-# 🖼️ svico
+# 🖼️ Svico
 
 <a href='https://crates.io/crates/svico'><img src="https://img.shields.io/crates/v/svico.svg?style=flat-square&labelColor=b94f16&color=d6c8ba&label=%F0%9F%93%A6%20crates.io" alt="crates.io"></a>&nbsp;
 <a href="https://crates.io/crates/svico"><img src="https://img.shields.io/crates/d/svico.svg?style=flat-square&labelColor=b94f16&color=d6c8ba&label=%F0%9F%93%A5%20downloads" alt="downloads"/></a>&nbsp;
@@ -6,7 +6,7 @@
 
 An SVG to ICO converter optimized for the **smallest lossless output**
 
-`svico` renders the SVG into PNG layers at each requested size, losslessly compresses them with `oxipng`, and assembles them into a single `.ico` file.
+Svico renders the SVG into PNG layers at each requested size, losslessly compresses them with `oxipng`, and assembles them into a single `.ico` file.
 
 ## 🕹️ CLI
 
