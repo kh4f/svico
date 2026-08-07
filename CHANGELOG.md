@@ -1,6 +1,18 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.3.0  `](https://github.com/kh4f/svico/compare/v0.2.0...v0.3.0)
+
+### &emsp; 🎁 Features
+- **Clearer conversion logs**: `svico` now shows a `Generating ... from ...` header with the target sizes, right-aligned per-layer sizes, and a `Done!` summary with human-readable `B`/`KiB` counts. [🡥](https://github.com/kh4f/svico/commit/e7baca2)
+
+### &emsp; 📋 Docs
+- **Status badges**: the README now shows crates.io version, download counts, and docs.rs badges up top. [🡥](https://github.com/kh4f/svico/commit/a27b5ee)
+- **Concise intro**: the tagline is followed by a one-line explanation of how `svico` renders, compresses, and assembles the ICO. [🡥](https://github.com/kh4f/svico/commit/35f6453)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.2.0...v0.3.0) &ensp;•&ensp; Aug 7, 2026
+
+
 ## &ensp; [` 📦 v0.2.0  `](https://github.com/kh4f/svico/compare/v0.1.0...v0.2.0)
 
 ### &emsp; 📢 BREAKING CHANGES
