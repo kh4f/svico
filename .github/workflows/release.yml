@@ -3,6 +3,7 @@ name: release
 on: { push: { tags: v*.*.* } }
 
 env:
+  BIN_NAME: svico
   TAG: ${{ github.ref_name }}
 
 jobs:
@@ -37,7 +38,7 @@ jobs:
         run: |
           REPO=${{ github.event.repository.name }}
           VER=${TAG#v}
-          BIN=target/release/$REPO${{ matrix.bin_ext }}
+          BIN=target/release/$BIN_NAME${{ matrix.bin_ext }}
           ZIP=dist/$REPO-$VER-${{ matrix.platform }}.zip
 
           mkdir dist
