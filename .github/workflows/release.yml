@@ -35,19 +35,17 @@ jobs:
 
       - shell: bash
         run: |
-          VER=${TAG#v}
           REPO=${{ github.event.repository.name }}
+          VER=${TAG#v}
           BIN=target/release/$REPO${{ matrix.bin_ext }}
-          OUT=dist/$REPO
           ZIP=dist/$REPO-$VER-${{ matrix.platform }}.zip
 
-          mkdir -p $OUT
-          cp $BIN $OUT
-          python3 -m zipfile -c $ZIP $OUT
+          mkdir dist
+          python3 -m zipfile -c $ZIP $BIN
 
       - uses: actions/upload-artifact@v7
         with:
-          path: dist/*.zip
+          path: dist/*
           name: ${{ matrix.platform }}
 
   publish:
