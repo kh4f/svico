@@ -1,6 +1,20 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.3.3  `](https://github.com/kh4f/svico/compare/v0.3.2...v0.3.3)
+
+### &emsp; ⚡ Performance
+- **Smaller binary**: trimmed unused `oxipng` features (`binary`, `parallel`, `zopfli`) and their dependencies, shrinking the release binary by ~4% with identical output. [🡥](https://github.com/kh4f/svico/commit/fd0d5ff)
+
+### &emsp; 📋 Docs
+- **Pronunciation guide**: the README now shows how to pronounce Svico (`/ˈsviːkoʊ/`). [🡥](https://github.com/kh4f/svico/commit/9a55656)
+
+### &emsp; 📦 Distribution
+- **Direct binary in zips**: prebuilt release zips now place the executable at the archive root, so extracting yields `svico` immediately. [🡥](https://github.com/kh4f/svico/commit/0647223)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.3.2...v0.3.3) &ensp;•&ensp; Aug 8, 2026
+
+
 ## &ensp; [` 📦 v0.3.2  `](https://github.com/kh4f/svico/compare/v0.3.1...v0.3.2)
 
 ### &emsp; 📋 Docs
