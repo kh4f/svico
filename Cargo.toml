@@ -7,7 +7,7 @@ authors = ["kh4f"]
 license = "MIT"
 repository = "https://github.com/kh4f/svico"
 readme = "README.md"
-keywords = ["svg", "ico", "svg-to-ico", "converter"]
+keywords = ["ico", "favicon", "svg-to-ico", "ico-generator", "rust"]
 categories = ["command-line-utilities", "graphics"]
 include = ["src", "LICENSE"]
 
