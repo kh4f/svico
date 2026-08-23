@@ -17,7 +17,7 @@ pub fn convert(
         .collect::<Vec<_>>()
         .join(", ");
     println!(
-        "Generating {} from {} with sizes: {sizes_list}",
+        "Generating '{}' from '{}' with sizes: {sizes_list}",
         ico_path.display(),
         svg_path.display()
     );
@@ -42,7 +42,7 @@ pub fn convert(
     }
 
     fs::write(ico_path, &ico)?;
-    println!("Done! {} is {}", ico_path.display(), fmt_bytes(ico.len()));
+    println!("Done! '{}' is {}", ico_path.display(), fmt_bytes(ico.len()));
     Ok(())
 }
 
