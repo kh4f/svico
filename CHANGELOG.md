@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.3.5  `](https://github.com/kh4f/svico/compare/v0.3.4...v0.3.5)
+
+### &emsp; 📦 Distribution
+- **Richer crates.io links**: added `homepage` and `documentation` metadata, so the crate card in crates.io search results now shows `Homepage` and `Documentation` links. [🡥](https://github.com/kh4f/svico/commit/68f45d0)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.3.4...v0.3.5) &ensp;•&ensp; Aug 23, 2026
+
+
 ## &ensp; [` 📦 v0.3.4  `](https://github.com/kh4f/svico/compare/v0.3.3...v0.3.4)
 
 ### &emsp; 🩹 Fixes
