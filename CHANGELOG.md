@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.3.4  `](https://github.com/kh4f/svico/compare/v0.3.3...v0.3.4)
+
+### &emsp; 🩹 Fixes
+- **Auto-created output directories**: conversion now creates missing parent folders of the output path instead of failing. [🡥](https://github.com/kh4f/svico/commit/964fdd0)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.3.3...v0.3.4) &ensp;•&ensp; Aug 23, 2026
+
+
 ## &ensp; [` 📦 v0.3.3  `](https://github.com/kh4f/svico/compare/v0.3.2...v0.3.3)
 
 ### &emsp; ⚡ Performance
