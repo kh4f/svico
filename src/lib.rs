@@ -36,6 +36,11 @@ pub fn convert(
         .collect::<anyhow::Result<Vec<_>>>()?;
 
     let ico = build_ico(&png_layers);
+
+    if let Some(parent) = ico_path.parent().filter(|p| !p.as_os_str().is_empty()) {
+        fs::create_dir_all(parent)?;
+    }
+
     fs::write(ico_path, &ico)?;
     println!("Done! {} is {}", ico_path.display(), fmt_bytes(ico.len()));
     Ok(())
