@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.3.6  `](https://github.com/kh4f/svico/compare/v0.3.5...v0.3.6)
+
+### &emsp; 📦 Distribution
+- **Cleaner crate keywords**: removed the redundant `rust` keyword from package metadata. [🡥](https://github.com/kh4f/svico/commit/a165fb7)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.3.5...v0.3.6) &ensp;•&ensp; Aug 24, 2026
+
+
 ## &ensp; [` 📦 v0.3.5  `](https://github.com/kh4f/svico/compare/v0.3.4...v0.3.5)
 
 ### &emsp; 📦 Distribution
