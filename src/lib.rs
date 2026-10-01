@@ -122,7 +122,7 @@ fn encode_png(width: u32, height: u32, rgba: &[u8]) -> anyhow::Result<Vec<u8>> {
 fn unpremultiply(data: &[u8]) -> Vec<u8> {
     let mut out = data.to_vec();
 
-    for px in out.chunks_exact_mut(4) {
+    for px in out.as_chunks_mut::<4>().0 {
         let a = px[3];
         if a > 0 && a < 255 {
             let alpha = a as f32 / 255.0;
