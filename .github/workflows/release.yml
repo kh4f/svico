@@ -5,11 +5,12 @@ on:
     tags: v*.*.*
 
 env:
-  BIN_NAME: svico
   TAG: ${{ github.ref_name }}
 
 jobs:
   build:
+    env:
+      BIN_NAME: svico
     strategy:
       matrix:
         include:
