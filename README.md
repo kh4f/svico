@@ -1,12 +1,12 @@
 # 🖼️ Svico
 
-<a href='https://crates.io/crates/svico'><img src="https://img.shields.io/crates/v/svico.svg?style=flat-square&logo=rust&labelColor=DD6007&color=FCDBCA&label=crates.io" alt="crates.io"></a>&nbsp;
-<a href="https://crates.io/crates/svico"><img src="https://img.shields.io/crates/d/svico.svg?style=flat-square&labelColor=DD6007&color=FCDBCA&label=%F0%9F%93%A5%20downloads" alt="downloads"/></a>&nbsp;
-<a href="https://docs.rs/svico"><img src="https://img.shields.io/docsrs/svico?style=flat-square&labelColor=DD6007&color=FCDBCA&label=%F0%9F%93%8B%20docs" alt="docs"></a>
+<a href='https://crates.io/crates/svico'><img alt="version" src="https://img.shields.io/crates/v/svico.svg?style=flat-square&logo=rust&labelColor=EB5200&color=FFE4D6&label=crates.io"></a>&nbsp;
+<a href="https://crates.io/crates/svico"><img alt="downloads" src="https://img.shields.io/crates/d/svico.svg?style=flat-square&labelColor=EB5200&color=FFE4D6&label=%F0%9F%93%A5%20downloads"></a>&nbsp;
+<a href="https://docs.rs/svico"><img alt="docs" src="https://img.shields.io/docsrs/svico?style=flat-square&labelColor=EB5200&color=FFE4D6&label=%F0%9F%93%8B%20docs"></a>
 
-An SVG to ICO converter optimized for the **smallest lossless output**
+**Svico** /ˈsvaɪkoʊ/ is an SVG to ICO converter optimized for the **smallest lossless output**.
 
-**Svico** */ˈsviːkoʊ/* renders the SVG into PNG layers at each requested size, losslessly compresses them with [Oxipng](https://crates.io/crates/oxipng), and assembles them into a single `.ico` file.
+It renders the SVG into PNG layers at each requested size, losslessly compresses them with [Oxipng](https://crates.io/crates/oxipng), and assembles them into a single `.ico` file.
 
 ## 🕹️ CLI
 
