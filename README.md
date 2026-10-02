@@ -34,7 +34,7 @@ Examples:
 
 ```toml
 [dependencies]
-svico = "0.3"
+svico = "0.4"
 ```
 
 ```rust

@@ -1,6 +1,19 @@
 # Changelog
 
 
+## &ensp; ` 🏷️ v0.4.0  `
+
+### &emsp; ✨ Features
+- **Output directories**: `-o`/`--output` can now target an existing directory or a path ending in `/` or `\\`; Svico writes the `<input_name>.ico` file inside it. [🡥](https://github.com/kh4f/svico/commit/0cd8c29)
+- **Help without arguments**: running `svico` without an input now prints the full help text before reporting the missing SVG path. [🡥](https://github.com/kh4f/svico/commit/ef1f530)
+
+### &emsp; 📋 Docs
+- **Clearer CLI examples**: the help and README now clarify the size argument and show expected output paths, including directory output. [🡥](https://github.com/kh4f/svico/commit/4bf176f)
+- **Refreshed project description**: updated the README badges and overview text. [🡥](https://github.com/kh4f/svico/commit/676fc5b)
+
+##### &emsp;&emsp; [Commit log](https://github.com/kh4f/svico/compare/v0.3.6...v0.4.0) &ensp;•&ensp; Oct 3, 2026
+
+
 ## &ensp; [` 📦 v0.3.6  `](https://github.com/kh4f/svico/compare/v0.3.5...v0.3.6)
 
 ### &emsp; 📦 Distribution
