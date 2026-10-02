@@ -20,14 +20,14 @@ cargo install svico
 Usage: svico <input.svg> [options]
 
 Options:
-  -o, --output <path>  Output .ico path [<input>.ico]
-  -s, --sizes <list>   Comma-separated sizes in 1..=256 [16,24,32,256]
+  -o, --output <path>  Output .ico path or directory [<input>.ico]
+  -s, --sizes <sizes>  Comma-separated icon sizes in 1..=256 [16,24,32,256]
   -h, --help           Print help
 
 Examples:
-  svico icon.svg
-  svico icon.svg -o app/favicon.ico
-  svico icon.svg -s 64,128,256
+  svico icon.svg                          # -> icon.ico (16,24,32,256)
+  svico icon.svg -o app/favicon.ico       # -> app/favicon.ico (16,24,32,256)
+  svico icon.svg -o icons/ -s 64,128,256  # -> icons/icon.ico (64,128,256)
 ```
 
 ## 🧩 API
