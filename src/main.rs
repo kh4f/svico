@@ -5,8 +5,6 @@ use std::{
 
 const DEFAULT_SIZES: &[u32] = &[16, 24, 32, 256];
 
-const USAGE: &str = "Usage: svico <input.svg> [options]";
-
 const HELP: &str = "\
 Usage: svico <input.svg> [options]
 
@@ -62,7 +60,8 @@ fn main() -> anyhow::Result<()> {
     }
 
     let Some(svg_path) = svg_path else {
-        anyhow::bail!("{USAGE}\nSee 'svico --help' for more information.");
+        eprintln!("{HELP}");
+        anyhow::bail!("input SVG path is required");
     };
     let ico_path = resolve_output_path(&svg_path, ico_path)?;
 
